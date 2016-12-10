@@ -89,7 +89,7 @@ const string & DrinkMachine::getinformation()
 
 int DrinkMachine::totaldrinkcount()
 {
-	return drinks_.size();
+	return (int)drinks_.size();
 }
 
 int DrinkMachine::sell(const Drink * drink)
