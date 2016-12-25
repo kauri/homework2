@@ -4,7 +4,6 @@
 #include "ILog.h"
 using namespace std;
 
-
 class ConsoleLogger : public ILog
 {
 public:
@@ -18,3 +17,4 @@ private:
 	LogLevel mLogLevel;
 };
 
+extern string GetLogLevelString(LogLevel level);

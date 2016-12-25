@@ -10,9 +10,11 @@ int main()
 
 
 	LogMgr->Info("Welcome to LogManager");
-	//LogMgr->Warning("Support for int: %d,  hex: %x,  oct: %o, bin: %b", 42);
+	LogMgr->Warning("Support for int: %d, hex: %x", 42, 42);
 	
-
 	LogManager::Destroy();
+
+	char c;
+	cin >> c;
 	return 0;
 }

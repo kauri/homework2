@@ -77,20 +77,23 @@ void LogManager::Serious(const string fmt_str, ...)
 }
 
 string LogManager::StringFormat(const string fmt_str, va_list args)
-{
-	int final_n, n = ((int)fmt_str.size()) * 2;
-	string str;
-	unique_ptr<char[]> formatted;	
-	while (true)
+{	
+	int   result = -1, length = 1024;
+	char *buffer = 0;
+	while (result == -1)
 	{
-		formatted.reset(new char[n]);
-		strcpy_s(&formatted[0], n, fmt_str.c_str());
-		final_n = vsnprintf_s(&formatted[0], n, n, fmt_str.c_str(), args);
-		if (final_n < 0 || final_n >= n)
-			n += abs(final_n - n + 1);
-		else
-			break;
-	}
+		if (buffer != nullptr)
+		{
+			delete[] buffer;
+		}
 
-	return string(formatted.get());
+		buffer = new char[length + 1];
+		memset(buffer, 0, length + 1);
+		result = _vsnprintf_s(buffer, length, _TRUNCATE, fmt_str.c_str(), args);
+		length *= 2;
+	}
+	std::string s(buffer);
+	delete[] buffer;
+	return s;	
 }
+

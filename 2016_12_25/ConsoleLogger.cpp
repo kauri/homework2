@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include "LogManager.h"
 
 ConsoleLogger::ConsoleLogger() : mLogLevel(LogLevel::INFO)
 {
@@ -24,7 +25,8 @@ void ConsoleLogger::WriteLog(LogLevel logLevel, string & logMessage)
 	oss << put_time(&tm, "%Y-%m-%d %H-%M-%S");
 	auto str = oss.str();
 
-	cout << "[" << str << "] " << logMessage << endl;
+	cout << "[" << str << "][" << StringUtil::GetLogLevelString(logLevel) << "] ";
+	cout << logMessage << endl;
 }
 
 void ConsoleLogger::SetLogLevel(LogLevel logLevel)

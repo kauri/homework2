@@ -18,3 +18,10 @@ public:
 };
 
 
+class StringUtil
+{
+public:
+	static string GetLogLevelString(LogLevel level);
+};
+
+
